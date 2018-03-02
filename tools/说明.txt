@@ -1,0 +1,9 @@
+将dump_syms和symbol.py放在被测试程序的执行目录. 然后执行python symbol.py heapdump.dump out.dmp，此时out.dmp中就会将符号解释出来
+
+PS:如果编译时将debug信息去掉，会出现not found的情形，附带了一个X64版本的dump_syms
+
+symbol_merge.py 是一个对symbol.py输出结果进行合并的工具，合并相同堆栈信息
+例如：python symbol_merge.py --dumpfile=out.dump --codedir=/home/swordm3d  --exclude="/base/code/include/google/protobuf" --strippath=/home/swordm3d/build/daily/LINUX/swordm3d-code/trunk/
+codedir为需要关注的源码路径，比如一些第三方的可能我们是不关心的
+strippath为显示时候去掉的文件路径，避免输出结果时文件路径过长
+
