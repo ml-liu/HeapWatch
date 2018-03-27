@@ -699,11 +699,13 @@ pid_t fork(){
 
 int ctl_thread(void* data){
 
-	const char* sock_path = "/tmp/heapwatch.sock";
+	char sock_path[256];
 
 	static char buff[4096];
 
 	int pos = 0;
+
+	sprintf(sock_path, "/tmp/heapwatch.%d.sock", (int)getpid());
 	
 	unlink(sock_path);
 	
@@ -834,6 +836,7 @@ int ctl_thread(void* data){
 			pos += sprintf(buff + pos,"`echo \"dump\"|nc -U /tmp/heapwatch.sock` to dump.\n");
 			pos += sprintf(buff + pos,"`echo \"watchmethod=X\"|nc -U /tmp/heapwatch.sock` to dump. X can be set 1,2,4,8, and also can be set add value[	BySize  = 1,  ByRefCount = 2,    ByAllocCount = 4,    ByFreeCount = 8,]\n");			
 			pos += sprintf(buff + pos,"`echo \"watchsize=X\"|nc -U /tmp/heapwatch.sock`  to dump. X cant be set from 1 to 1000 integer\n");
+			pos += sprintf(buff + pos,"`echo \"bt\"|nc -U /tmp/heapwatch.sock` to get ptmalloc meminfo.\n");
 			pos += sprintf(buff + pos, "****** end help *****\n");
 			write(client_sockfd, buff, strlen(buff));	
 	  }
