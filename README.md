@@ -31,21 +31,11 @@ free count: 222021100
 ```cpp
 ref count: 2254018, total alloc count: 3168984, total free count: 914966, unfree size 126225008,
 , stack: 
-./heapwatch_64.so ReferenceStack at /root/HeapWatch/StackStorage.c:206
-./heapwatch_64.so realloc at /root/HeapWatch/Preload.c:414
-./Server luaM_realloc_ at /root/.jenkins/workspace/PublishServer/Source/NoahSDK/Noah3rdparty/Lua/src/lmem.c:87
-./Server luaC_newobj at /root/.jenkins/workspace/PublishServer/Source/NoahSDK/Noah3rdparty/Lua/src/lgc.c:211
-./Server luaS_newudata at /root/.jenkins/workspace/PublishServer/Source/NoahSDK/Noah3rdparty/Lua/src/lstring.c:245
-./Server lua_newuserdata at /root/.jenkins/workspace/PublishServer/Source/NoahSDK/Noah3rdparty/Lua/src/lapi.c:1187
-./Server lua_tinker::functor<Noah::TreeSystem*, void, void, void, void, void, void, void, void, void>::invoke(lua_State*) at /home/jenkins/libs/ServerCore/include/lua_tinker.h:295
-./Server luaD_precall at /root/.jenkins/workspace/PublishServer/Source/NoahSDK/Noah3rdparty/Lua/src/ldo.c:368
-./Server luaV_execute at /root/.jenkins/workspace/PublishServer/Source/NoahSDK/Noah3rdparty/Lua/src/lvm.c:1134
+
 ```
 
 ref count表示有2254018个内存块未释放，未释放的总大小为:126225008字节。目前统计文件的内存大小均以字节为单位。同时未释放的字节数从小到大来进行排序，文件尾部记录的堆栈为未释放内存字节数最多的堆栈。
 
-# 工具位置
-目前暂时还放在SVN上：svn://xsjreposvr4.rdev.kingsoft.net/crasheye/trunk/QCMobile/SourceCode/Tools/HeapWatch，后续会将其放到我们平台上。
 
 # 说明
 部分服务器进程可能无法使用该工具，此时麻烦通知我们，我们及时对其进行修改让其适配更多的服务器。
