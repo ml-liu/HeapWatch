@@ -47,7 +47,7 @@ typedef struct _Dlink DLINK;
 
 //#define STORAGE_SIZE 1299721
 #define STORAGE_SIZE 105708417
-#define STACK_LIMIT  8
+#define STACK_LIMIT  16
 
 // Number of top stacks to be printed (from 1 to 1000)
 // Set by HEAPWATCH_SIZE env var, default is 200
